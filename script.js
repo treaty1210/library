@@ -13,15 +13,15 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+//Function to create a new book to be added
 function addBookToLibrary() {
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
     let pages = document.querySelector("#pages").value;
-    let read = document.querySelector("#readStatus").value;
+    let read = document.querySelector("#readStatus").checked;
     let newBook = new Book(title, author, pages, read);
-    console.log(newBook);
     myLibrary.push(newBook);
-    console.log(myLibrary)
+    displayLibrary();
 }
 
 //Button to display the form
@@ -35,3 +35,23 @@ document.querySelector("#bookForm").addEventListener("submit", (e) => {
     e.preventDefault();
     addBookToLibrary();
 })
+
+//Displays library array with updated information
+function displayLibrary() {
+    let libraryDisplay = document.querySelector(".libraryDisplay");
+    libraryDisplay.textContent = "";
+    for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        let addedBook = document.createElement("div");
+        addedBook.innerHTML = `<div class="cardHeader">
+        <h2 class="">${book.title}</h2>
+        <h4 class="author">by ${book.author}</h4>
+    </div>
+    <div class="cardBody">
+        <p>${book.pages} pages</p>
+        <p class="read">${book.read ? "Read" : "Not Read Yet"}</p>
+    </div>`;
+        libraryDisplay.appendChild(addedBook);
+    }
+}
+
