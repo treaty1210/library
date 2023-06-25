@@ -51,6 +51,7 @@ function displayLibrary() {
         <p>${book.pages} pages</p>
         <p class="read">${book.read ? "Read" : "Not Read Yet"}</p>
         <button class="removeButton" onclick="removeBook(${i})">Remove</button>
+        <button class="toggleRead" onclick="toggleRead(${i})">Toggle Read</button>
     </div>`;
         libraryDisplay.appendChild(addedBook);
     }
@@ -59,5 +60,15 @@ function displayLibrary() {
 //remove a book
 function removeBook(index) {
     myLibrary.splice(index, 1);
+    displayLibrary();
+}
+
+//toggle read on books
+Book.prototype.toggleRead = function () {
+    this.read = !this.read
+}
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead();
     displayLibrary();
 }
