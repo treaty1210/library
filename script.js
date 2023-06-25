@@ -50,8 +50,14 @@ function displayLibrary() {
     <div class="cardBody">
         <p>${book.pages} pages</p>
         <p class="read">${book.read ? "Read" : "Not Read Yet"}</p>
+        <button class="removeButton" onclick="removeBook(${i})">Remove</button>
     </div>`;
         libraryDisplay.appendChild(addedBook);
     }
 }
 
+//remove a book
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    displayLibrary();
+}
