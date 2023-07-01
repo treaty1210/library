@@ -5,24 +5,28 @@ let newBookBtn = document.querySelector("#newBook");
 let myLibrary = []; 
 
 
-//Constructor
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+//Updated to class
+class Book{
+    constructor({title, author, pages, read}) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
 
 //Function to create a new book to be added
-function addBookToLibrary() {
-    let title = document.querySelector("#title").value;
-    let author = document.querySelector("#author").value;
-    let pages = document.querySelector("#pages").value;
-    let read = document.querySelector("#readStatus").checked;
-    let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
-    displayLibrary();
-}
+    addBookToLibrary() {
+        // let title = document.querySelector("#title").value;
+        // let author = document.querySelector("#author").value;
+        // let pages = document.querySelector("#pages").value;
+        // let read = document.querySelector("#readStatus").checked;
+        // let newBook = new Book(title, author, pages, read);
+        myLibrary.push(this);
+        displayLibrary();
+    }
+};
+
 
 //Button to display the form
 newBookBtn.addEventListener("click", () => {
@@ -33,7 +37,17 @@ newBookBtn.addEventListener("click", () => {
 //Button to add filled out book form to the library
 document.querySelector("#bookForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    addBookToLibrary();
+
+    //Setting new book as part of Book class
+    let addBook = new Book({
+        title: document.querySelector("#title").value,
+        author: document.querySelector("#author").value,
+        pages: document.querySelector("#pages").value,
+        read: document.querySelector("#readStatus").checked});
+        
+    console.log(addBook)
+
+    addBook.addBookToLibrary();
 })
 
 //Displays library array with updated information
