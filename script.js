@@ -14,6 +14,29 @@ class Book{
         this.read = read;
     }
 
+    get title() {
+        return this._title;
+    }
+
+    set title(value) {
+        if (value.length < 2) {
+            alert("Title is too short. Book will not have title.");
+            return;
+        }
+        this._name = value;
+    }
+
+    get author() {
+        return this._author;
+    }
+
+    set author(value) {
+        if (value.length < 2) {
+            alert("Author's name is too short. Book will not contain author's name.");
+            return;
+        }
+        this._author = value;
+    }
 
 //Function to create a new book to be added
     addBookToLibrary() {
@@ -44,7 +67,7 @@ document.querySelector("#bookForm").addEventListener("submit", (e) => {
         author: document.querySelector("#author").value,
         pages: document.querySelector("#pages").value,
         read: document.querySelector("#readStatus").checked});
-        
+
     console.log(addBook)
 
     addBook.addBookToLibrary();
